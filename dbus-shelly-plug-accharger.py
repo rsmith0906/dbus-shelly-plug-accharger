@@ -67,21 +67,23 @@ class DbusShellyService:
     gobject.timeout_add(self._getSignOfLifeInterval()*60*1000, self._signOfLife)
 
   def _getShellySerial(self):
-    meter_data = self._getShellyData()
+    #meter_data = self._getShellyData()
 
-    if not meter_data['mac']:
-        raise ValueError("Response does not contain 'mac' attribute")
+    #if not meter_data['mac']:
+    #    raise ValueError("Response does not contain 'mac' attribute")
 
-    serial = meter_data['mac']
+    #serial = meter_data['mac']
+    serial = '000000000'
     return serial
 
   def _getShellyFWVersion(self):
-    meter_data = self._getShellyData()
+    #meter_data = self._getShellyData()
 
-    if not meter_data['update']['old_version']:
-        raise ValueError("Response does not contain 'update/old_version' attribute")
+    #if not meter_data['update']['old_version']:
+    #    raise ValueError("Response does not contain 'update/old_version' attribute")
 
-    ver = meter_data['update']['old_version']
+    #ver = meter_data['update']['old_version']
+    ver = '1.0'
     return ver
 
   def _getConfig(self):
@@ -141,7 +143,7 @@ class DbusShellyService:
   def _update(self):
     try:
        #get data from Shelly 1pm
-       meter_data = self._getShellyData()
+       #meter_data = self._getShellyData()
 
        config = self._getConfig()
        str(config['DEFAULT']['Phase'])
@@ -154,9 +156,12 @@ class DbusShellyService:
          pre = '/Ac/In/' + phase
 
          if phase == accharger_phase:
-           power = meter_data['meters'][0]['power']
-           total = meter_data['meters'][0]['total']
-           current = power / 120
+           #power = meter_data['meters'][0]['power']
+           #total = meter_data['meters'][0]['total']
+           #current = power / 120
+
+           power = 720
+           current = 30
 
            self._dbusservice[pre + '/CurrentLimit'] = accharger_limit
            self._dbusservice[pre + '/I'] = current
