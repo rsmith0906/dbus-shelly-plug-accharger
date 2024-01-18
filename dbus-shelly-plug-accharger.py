@@ -158,6 +158,9 @@ class DbusShellyService:
            total = meter_data['meters'][0]['total']
            current = power / 120
 
+           self._dbusservice['/NrOfOutputs'] = 1
+           self._dbusservice['/Dc/0/Voltage'] = 24
+           self._dbusservice['/Dc/0/Current'] = 30
            self._dbusservice['/Ac/In/CurrentLimit'] = accharger_limit
            self._dbusservice[pre + '/I'] = current
            self._dbusservice[pre + '/P'] = power
@@ -171,6 +174,7 @@ class DbusShellyService:
            self._dbusservice[pre + '/I'] = 0
            self._dbusservice[pre + '/P'] = 0
            self._dbusservice['/State'] = 0
+           self._dbusservice['/NrOfOutputs'] = 0
 
        self._dbusservice['/Ac/In/L1/P'] = self._dbusservice['/Ac/In/' + accharger_phase + '/P']
 
@@ -222,6 +226,9 @@ def main():
       _a = lambda p, v: (str(round(v, 1)) + 'A')
       _w = lambda p, v: (str(round(v, 1)) + 'W')
       _l = lambda p, v: (str(round(v, 1)) + 'A')
+      _outputs = lambda p, v: (str(v))
+      _voltage = lambda p, v: (str(round(v, 1)) + 'V')
+      _current = lambda p, v: (str(round(v, 1)) + 'A')
 
       #start our main-service
       pvac_output = DbusShellyService(
@@ -232,6 +239,9 @@ def main():
           '/Ac/In/CurrentLimit': {'initial': 0, 'textformat': _l},
           '/State': {'initial': 0, 'textformat': _state},
           '/Mode': {'initial': 4, 'textformat': _mode},
+          '/NrOfOutputs': {'initial': 0, 'textformat': _outputs},
+          '/Dc/0/Voltage': {'initial': 0, 'textformat': _voltage},
+          '/Dc/0/Current': {'initial': 0, 'textformat': _current},
         })
 
       logging.info('Connected to dbus, and switching over to gobject.MainLoop() (= event based)')
