@@ -147,7 +147,7 @@ class DbusShellyService:
        str(config['DEFAULT']['Phase'])
 
        accharger_phase = str(config['DEFAULT']['Phase'])
-       accharger_limit = str(config['DEFAULT']['CurrentLimit'])
+       accharger_limit = int(config['DEFAULT']['CurrentLimit'])
 
        #send data to DBus
        for phase in ['L1']:
