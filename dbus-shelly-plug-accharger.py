@@ -163,7 +163,7 @@ class DbusShellyService:
            power = 720
            current = 30
 
-           self._dbusservice[pre + '/CurrentLimit'] = accharger_limit
+           self._dbusservice['/Ac/In/CurrentLimit'] = accharger_limit
            self._dbusservice[pre + '/I'] = current
            self._dbusservice[pre + '/P'] = power
            if power > 0:
@@ -172,7 +172,7 @@ class DbusShellyService:
              self._dbusservice['/State'] = 0
 
          else:
-           self._dbusservice[pre + '/CurrentLimit'] = 0
+           self._dbusservice['/Ac/In/CurrentLimit'] = 0
            self._dbusservice[pre + '/I'] = 0
            self._dbusservice[pre + '/P'] = 0
            self._dbusservice['/State'] = 0
