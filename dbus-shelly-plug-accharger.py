@@ -149,7 +149,7 @@ class DbusShellyService:
        str(config['DEFAULT']['Phase'])
 
        accharger_phase = str(config['DEFAULT']['Phase'])
-       accharger_limit = str(config['DEFAULT']['CurrentLimit'])
+       accharger_limit = int(config['DEFAULT']['CurrentLimit'])
 
        #send data to DBus
        for phase in ['L1']:
@@ -230,7 +230,7 @@ def main():
       _mode = lambda p, v: (str(v))
       _a = lambda p, v: (str(round(v, 1)) + 'A')
       _w = lambda p, v: (str(round(v, 1)) + 'W')
-      _l = lambda p, v: (str(round(v, 1)) + 'A')
+      _l = lambda p, v: (int(round(v, 0)))
       _outputs = lambda p, v: (str(v))
       _voltage = lambda p, v: (str(round(v, 1)) + 'V')
       _current = lambda p, v: (str(round(v, 1)) + 'A')
