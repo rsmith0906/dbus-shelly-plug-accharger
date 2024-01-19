@@ -230,7 +230,7 @@ def main():
       _mode = lambda p, v: (str(v))
       _a = lambda p, v: (str(round(v, 1)) + 'A')
       _w = lambda p, v: (str(round(v, 1)) + 'W')
-      _l = lambda p, v: (int(round(v, 0)))
+      _l = lambda p, v: (str(round(v, 1)))
       _outputs = lambda p, v: (str(v))
       _voltage = lambda p, v: (str(round(v, 1)) + 'V')
       _current = lambda p, v: (str(round(v, 1)) + 'A')
@@ -244,7 +244,7 @@ def main():
           '/Ac/In/CurrentLimit': {'initial': 0, 'textformat': _l},
           '/State': {'initial': 0, 'textformat': _state},
           '/Mode': {'initial': 4, 'textformat': _mode},
-          '/NrOfOutputs': {'initial': 0, 'textformat': _outputs},
+          '/NrOfOutputs': {'initial': 1, 'textformat': _outputs},
           '/Dc/0/Voltage': {'initial': 0, 'textformat': _voltage},
           '/Dc/0/Current': {'initial': 0, 'textformat': _current},
         })
