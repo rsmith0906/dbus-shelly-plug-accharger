@@ -163,6 +163,7 @@ class DbusShellyService:
            power = 720
            current = 30
 
+           self._dbusservice['/Mode'] = 1
            self._dbusservice['/NrOfOutputs'] = 1
            self._dbusservice['/Dc/0/Voltage'] = 24
            self._dbusservice['/Dc/0/Current'] = 30
